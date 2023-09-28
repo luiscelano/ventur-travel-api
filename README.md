@@ -1,4 +1,4 @@
-# rest-api-starter-kit
+# ventur-travel-api
 
 Este proyecto contiene todo lo necesario para construir una aplicación de servidor con Node.js y Express.
 
@@ -16,7 +16,7 @@ Este proyecto contiene todo lo necesario para construir una aplicación de servi
 
 Es necesario tener instalado [node](https://nodejs.org/es/download) primero
 
-abre la consóla de comandos y asegurate de estar en el directorio del proyecto `rest-api-starter-kit`
+abre la consóla de comandos y asegurate de estar en el directorio del proyecto `ventur-travel-api`
 
 corre el siguiente comando para generar las variables de entorno e instalar los paquetes
 
@@ -50,6 +50,7 @@ Para usar git, se debe crear una rama especifica para los cambios, y luego se ha
 ![image](https://github.com/luiscelano/rest-api-starter-kit/assets/57637647/032d3e7f-4063-449c-8c04-18e39854d94e)
 
 ## Cómo funciona una REST API
+
 ![image](https://github.com/luiscelano/rest-api-starter-kit/assets/57637647/9662566d-0882-434b-a6fe-14ff7c684221)
 
 ## Autenticación
