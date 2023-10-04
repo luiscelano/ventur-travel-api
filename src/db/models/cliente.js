@@ -9,19 +9,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Cliente.belongsTo(models.TipoCliente, {
+        foreignKey: {
+          name: 'tipo_cliente',
+          allowNull: true
+        },
+        as: 'tipoCliente'
+      })
     }
   }
   Cliente.init(
     {
+      idCliente: {
+        type: DataTypes.INTEGER,
+        key: 'id_cliente',
+        autoIncrement: true,
+        unique: true,
+        allowNull: false,
+        primaryKey: true
+      },
       dpi: DataTypes.STRING,
       nombre: DataTypes.STRING,
       telefono: DataTypes.INTEGER,
       direccion: DataTypes.STRING,
-      correoElectronico: DataTypes.STRING
+      correoElectronico: {
+        type: DataTypes.STRING,
+        key: 'correo_electronico'
+      }
     },
     {
       sequelize,
-      modelName: 'Clientes',
+      modelName: 'Cliente',
       freezeTableName: true,
       underscored: true,
       tableName: 'cliente'
