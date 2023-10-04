@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "start": "NODE_ENV=production babel-node src/index.js"
+    "start": "NODE_ENV=production babel-node src/index.js",
+    "start:dev_windows": "set NODE_ENV=development nodemon --exec babel-node src/index.js",
+    "start_windows": "set NODE_ENV=production babel-node src/index.js",
+    "db:migrate": "sequelize --config src/config/database.js db:migrate"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +20,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "mssql": "^10.0.1",
+    "sequelize": "^6.33.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.15",
@@ -26,7 +31,8 @@
     "@babel/register": "^7.22.15",
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-root-import": "^6.6.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "sequelize-cli": "^6.6.1"
   },
   "overrides": {
     "babel-plugin-module-resolver": {

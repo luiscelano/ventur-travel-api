@@ -7,6 +7,7 @@ import cors from 'cors'
 dotenv.config({ path: __dirname.replace('src', `.env.${process.env.NODE_ENV || 'development'}`) })
 import posts from '__fixtures__/posts.json'
 import routes from 'routes'
+import db from 'db/models'
 ;(async () => {
   const app = express()
 
@@ -33,7 +34,9 @@ import routes from 'routes'
     res.status(200).json({ posts })
   })
 
-  server.listen(PORT, () => {
-    console.log(`Server running on http://${HOST}:${PORT}`)
-  })
+  db.sequelize.sync().then(() =>
+    server.listen(PORT, () => {
+      console.log(`Server running on http://${HOST}:${PORT}`)
+    })
+  )
 })()
