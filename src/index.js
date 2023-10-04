@@ -4,8 +4,7 @@ import http from 'http'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
-dotenv.config({ path: __dirname.replace('src', `.env.${process.env.NODE_ENV}`) })
-import config from 'config'
+dotenv.config({ path: __dirname.replace('src', `.env.${process.env.NODE_ENV || 'development'}`) })
 import posts from '__fixtures__/posts.json'
 import routes from 'routes'
 ;(async () => {
@@ -13,9 +12,6 @@ import routes from 'routes'
 
   const HOST = 'localhost'
   const PORT = process.env.PORT || 3000
-
-  global.config = await config()
-  console.log('>>> global.config:', global.config)
 
   const server = http.createServer(app)
 
