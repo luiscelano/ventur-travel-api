@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      fechaVenta:{
+      fechaVenta: {
         type: DataTypes.DATE,
         allowNull: false,
         field: "fecha_venta"
       },
-      totalPagar:{
+      totalPagar: {
         type: DataTypes.DOUBLE,
         allowNull: false,
         field: "total_pagar"
