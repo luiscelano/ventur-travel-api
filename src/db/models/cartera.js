@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Cartera.hasMany(models.CarteraDetalle, { foreignKey: { name: 'cartera_id', allowNull: false } });
+      Cartera.belongsToMany(models.Cliente, { foreignKey: { name: 'cliente_id', allowNull: false } });
+      Cartera.belongsTo(models.Usuario, { foreignKey: { name: 'usuario_id', allowNull: false } });
+
     }
   }
   Cartera.init(

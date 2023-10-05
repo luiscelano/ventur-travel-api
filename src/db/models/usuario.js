@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Usuario.belongsTo(models.StatusVendedor, { foreignKey: { name: 'statususuario_id', allowNull: false } });
+      Usuario.belongsTo(models.TipoUsuario, { foreignKey: { name: 'tipousuario_id', allowNull: false } });
+      Usuario.hasMany(models.Cartera, { foreignKey: { name: 'usuario_id', allowNull: false } });
+      Usuario.hasMany(models.MetaDetalle, { foreignKey: { name: 'metausuario_id', allowNull: false } });
+
     }
   }
   Usuario.init(

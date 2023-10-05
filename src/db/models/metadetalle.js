@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      MetaDetalle.belongsTo(models.MetaGeneral, { foreignKey: { name: 'metageneral_id', allowNull: false } });
+      MetaDetalle.belongsTo(models.Usuario, { foreignKey: { name: 'metausuario_id', allowNull: false } });
+
     }
   }
   MetaDetalle.init({

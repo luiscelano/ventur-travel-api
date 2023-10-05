@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      StatusPaquete.hasMany(models.Paquete, { foreignKey: { name: 'statuspaquete_id', allowNull: false } });
     }
   }
   StatusPaquete.init({

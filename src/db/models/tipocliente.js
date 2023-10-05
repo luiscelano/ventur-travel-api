@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      TipoCliente.hasMany(models.Cliente, { foreignKey: { name: 'tipocliente_id', allowNull: false } });
     }
   }
   TipoCliente.init(
