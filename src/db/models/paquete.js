@@ -45,6 +45,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
       field: "fecha_fin"
+    },
+    cantidadChd: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "cantidad_chd"
+    },
+    cantidadAdl: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "cantidad_adl"
     }
   }, {
     sequelize,

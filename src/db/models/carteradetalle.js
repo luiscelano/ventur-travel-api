@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         field: "fecha_inicio"
       },
-      fecha_fin: {
+      fechaFin: {
         type: DataTypes.DATE,
         allowNull: false,
         field: "fecha_fin"
