@@ -13,8 +13,43 @@ module.exports = (sequelize, DataTypes) => {
   }
   Usuario.init(
     {
-      correo: DataTypes.STRING,
-      contrasenia: DataTypes.STRING
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      idUsuario: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        field: "id_usuario"
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      nombre: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      apellido: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      dpi: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      fechaNacimiento: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: "fecha_nac"
+      },
+      fechaIngreso: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: "fecha_ingreso"
+      }
     },
     {
       sequelize,

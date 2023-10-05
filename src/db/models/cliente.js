@@ -9,32 +9,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cliente.belongsTo(models.TipoCliente, {
-        foreignKey: {
-          name: 'tipo_cliente',
-          allowNull: true
-        },
-        as: 'tipoCliente'
-      })
     }
   }
   Cliente.init(
     {
-      idCliente: {
+      id: {
         type: DataTypes.INTEGER,
-        key: 'id_cliente',
-        autoIncrement: true,
-        unique: true,
-        allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
-      dpi: DataTypes.STRING,
-      nombre: DataTypes.STRING,
-      telefono: DataTypes.INTEGER,
-      direccion: DataTypes.STRING,
-      correoElectronico: {
+      dpi: {
         type: DataTypes.STRING,
-        key: 'correo_electronico'
+        allowNull: false
+      },
+      nombre: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      telefono: {
+        type: DataTypes.BIGINT,
+        allowNull: false
+      },
+      direccion: {
+        type: DataTypes.STRING(300),
+        allowNull: false
+      },
+      correo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: "correo_electronico"
       }
     },
     {

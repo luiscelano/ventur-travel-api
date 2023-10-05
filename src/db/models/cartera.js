@@ -13,8 +13,21 @@ module.exports = (sequelize, DataTypes) => {
   }
   Cartera.init(
     {
-      carteraFechaVenta: DataTypes.DATE,
-      cartera_total_pagar: DataTypes.FLOAT
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      fechaVenta:{
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: "fecha_venta"
+      },
+      totalPagar:{
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: "total_pagar"
+      }
     },
     {
       sequelize,

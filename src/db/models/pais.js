@@ -13,7 +13,15 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pais.init(
     {
-      descripcion: DataTypes.STRING
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
     },
     {
       sequelize,

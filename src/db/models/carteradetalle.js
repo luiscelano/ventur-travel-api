@@ -13,11 +13,36 @@ module.exports = (sequelize, DataTypes) => {
   }
   CarteraDetalle.init(
     {
-      carteraCantidadTuristas: DataTypes.INTEGER,
-      carteraFechaInicio: DataTypes.DATE,
-      carteraFechaFin: DataTypes.DATE,
-      carteraCantidadPaquetes: DataTypes.INTEGER,
-      carteraPrecioXPaquete: DataTypes.FLOAT
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      cantidadTuristas: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: "cantidad_turistas"
+      },
+      fechaInicio: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: "fecha_inicio"
+      },
+      fecha_fin: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        field: "fecha_fin"
+      },
+      cantidadPaquetes: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: "cantidad_paquetes"
+      },
+      precioPaquete: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: "precio_paquete"
+      }
     },
     {
       sequelize,
