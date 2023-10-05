@@ -34,7 +34,7 @@ import db from 'db/models'
     res.status(200).json({ posts })
   })
 
-  db.sequelize.sync().then(() =>
+  db.sequelize.sync({ force: false }).then(() =>
     server.listen(PORT, () => {
       console.log(`Server running on http://${HOST}:${PORT}`)
     })

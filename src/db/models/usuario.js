@@ -9,27 +9,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Usuario.belongsTo(models.StatusVendedor, { foreignKey: { name: 'statususuario_id', allowNull: false } });
-      Usuario.belongsTo(models.TipoUsuario, { foreignKey: { name: 'tipousuario_id', allowNull: false } });
-      Usuario.hasMany(models.Cartera, { foreignKey: { name: 'usuario_id', allowNull: false } });
-      Usuario.hasMany(models.MetaDetalle, { foreignKey: { name: 'metausuario_id', allowNull: false } });
-
+      Usuario.belongsTo(models.StatusVendedor, { foreignKey: { name: 'id_status_vendedor', allowNull: false } })
+      Usuario.belongsTo(models.TipoUsuario, { foreignKey: { name: 'id_tipo_usuario', allowNull: false } })
+      Usuario.hasMany(models.Cartera, { foreignKey: { name: 'id_usuario', allowNull: false } })
+      Usuario.hasMany(models.MetaDetalle, { foreignKey: { name: 'id_usuario', allowNull: false } })
     }
   }
   Usuario.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      },
       idUsuario: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+        field: 'id_usuario'
+      },
+      correo: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
-        field: "id_usuario"
+        unique: true
       },
-      password: {
+      contrasenia: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -48,12 +48,12 @@ module.exports = (sequelize, DataTypes) => {
       fechaNacimiento: {
         type: DataTypes.DATE,
         allowNull: false,
-        field: "fecha_nac"
+        field: 'fecha_nac'
       },
       fechaIngreso: {
         type: DataTypes.DATE,
         allowNull: false,
-        field: "fecha_ingreso"
+        field: 'fecha_ingreso'
       }
     },
     {

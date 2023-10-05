@@ -9,7 +9,8 @@
     "start": "NODE_ENV=production babel-node src/index.js",
     "start:dev_windows": "set NODE_ENV=development nodemon --exec babel-node src/index.js",
     "start_windows": "set NODE_ENV=production babel-node src/index.js",
-    "db:migrate": "sequelize --config src/config/database.js db:migrate"
+    "db:migrate": "sequelize --config src/config/database.js db:migrate",
+    "db:seed": "sequelize --config src/config/database.js db:seed:all"
   },
   "keywords": [],
   "author": "",

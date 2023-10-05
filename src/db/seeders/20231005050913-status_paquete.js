@@ -4,14 +4,14 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     return Promise.all([
-      await queryInterface.bulkInsert('tipo_cliente', [
+      await queryInterface.bulkInsert('status_paquete', [
         {
-          descripcion: 'agencia',
+          descripcion: 'disponible',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          descripcion: 'cliente_final',
+          descripcion: 'agotado',
           created_at: new Date(),
           updated_at: new Date()
         }
@@ -20,6 +20,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('tipo_cliente', null, {})
+    return queryInterface.bulkDelete('status_paquete', null, {})
   }
 }

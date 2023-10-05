@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class MetaDetalle extends Model {
     /**
@@ -11,33 +9,36 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      MetaDetalle.belongsTo(models.MetaGeneral, { foreignKey: { name: 'metageneral_id', allowNull: false } });
-      MetaDetalle.belongsTo(models.Usuario, { foreignKey: { name: 'metausuario_id', allowNull: false } });
-
+      MetaDetalle.belongsTo(models.MetaGeneral, { foreignKey: { name: 'id_meta_general', allowNull: false } })
+      MetaDetalle.belongsTo(models.Usuario, { foreignKey: { name: 'id_usuario', allowNull: false } })
     }
   }
-  MetaDetalle.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+  MetaDetalle.init(
+    {
+      idMetaDetalle: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        key: 'id_meta_detalle'
+      },
+      metaAlcanzar: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: 'meta_alcanzar'
+      },
+      metaAcumulada: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: 'meta_acumulada'
+      }
     },
-    metaAlcanzar: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      field: "meta_alcanzar"
-    },
-    metaAcumulada: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      field: "meta_acumulada"
+    {
+      sequelize,
+      modelName: 'MetaDetalle',
+      freezeTableName: true,
+      underscored: true,
+      tableName: 'meta_detalle'
     }
-  }, {
-    sequelize,
-    modelName: 'MetaDetalle',
-    freezeTableName: true,
-    underscored: true,
-    tableName: 'meta_detalle'
-  });
-  return MetaDetalle;
-};
+  )
+  return MetaDetalle
+}

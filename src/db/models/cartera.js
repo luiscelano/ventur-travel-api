@@ -9,28 +9,34 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cartera.hasMany(models.CarteraDetalle, { foreignKey: { name: 'cartera_id', allowNull: false } });
-      Cartera.belongsToMany(models.Cliente, { foreignKey: { name: 'cliente_id', allowNull: false } });
-      Cartera.belongsTo(models.Usuario, { foreignKey: { name: 'usuario_id', allowNull: false } });
-
+      Cartera.belongsTo(models.Cliente, { foreignKey: { name: 'id_cliente', allowNull: false } })
+      Cartera.belongsTo(models.Usuario, { foreignKey: { name: 'id_usuario', allowNull: false } })
+      Cartera.belongsTo(models.Paquete, { foreignKey: { name: 'id_paquete', allowNull: false } })
+      Cartera.belongsTo(models.Pais, { foreignKey: { name: 'id_pais', allowNull: false } })
     }
   }
   Cartera.init(
     {
-      id: {
+      idCartera: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
-      },
-      fechaVenta: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        field: "fecha_venta"
+        autoIncrement: true,
+        key: 'id_cartera'
       },
       totalPagar: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-        field: "total_pagar"
+        field: 'total_pagar'
+      },
+      cantidadTuristas: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'cantidad_turistas'
+      },
+      cantidadPaquetes: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'cantidad_paquetes'
       }
     },
     {

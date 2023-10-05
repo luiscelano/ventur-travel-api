@@ -9,15 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Pais.hasMany(models.CarteraDetalle, { foreignKey: { name: 'pais_id', allowNull: false } });
+      Pais.hasMany(models.Cartera, { foreignKey: { name: 'id_pais', allowNull: false } })
     }
   }
   Pais.init(
     {
-      id: {
+      idPais: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        key: 'id_pais'
       },
       descripcion: {
         type: DataTypes.STRING,

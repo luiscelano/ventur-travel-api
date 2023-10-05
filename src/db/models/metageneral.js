@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class MetaGeneral extends Model {
     /**
@@ -11,39 +9,43 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      MetaGeneral.hasMany(models.MetaDetalle, { foreignKey: { name: 'metageneral_id', allowNull: false } });
+      MetaGeneral.hasMany(models.MetaDetalle, { foreignKey: { name: 'id_meta_general', allowNull: false } })
     }
   }
-  MetaGeneral.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+  MetaGeneral.init(
+    {
+      idMetaGeneral: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        key: 'id_meta_general'
+      },
+      mes: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      anio: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      metaAlcanzar: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: 'meta_alcanzar'
+      },
+      metaAcumulada: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: 'meta_acumulada'
+      }
     },
-    mes: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    anio: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    metaAlcanzar: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      field: "meta_alcanzar"
-    },
-    metaAcumulada: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      field: "meta_acumulada"
+    {
+      sequelize,
+      modelName: 'MetaGeneral',
+      freezeTableName: true,
+      underscored: true,
+      tableName: 'meta_general'
     }
-  }, {
-    sequelize,
-    modelName: 'MetaGeneral',
-    freezeTableName: true,
-    underscored: true,
-    tableName: 'meta_general'
-  });
-  return MetaGeneral;
-};
+  )
+  return MetaGeneral
+}

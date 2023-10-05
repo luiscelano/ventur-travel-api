@@ -9,17 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cliente.hasMany(models.Cartera, { foreignKey: { name: 'cliente_id', allowNull: false } });
-      Cliente.belongsTo(models.TipoCliente, { foreignKey: { name: 'tipocliente_id', allowNull: false } });
-
+      Cliente.hasMany(models.Cartera, { foreignKey: { name: 'id_cliente', allowNull: false } })
+      Cliente.belongsTo(models.TipoCliente, {
+        foreignKey: { name: 'id_tipo_cliente', allowNull: false },
+        as: 'tipoCliente'
+      })
     }
   }
   Cliente.init(
     {
-      id: {
+      idCliente: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        key: 'id_cliente'
       },
       dpi: {
         type: DataTypes.STRING,
@@ -40,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       correo: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "correo_electronico"
+        field: 'correo_electronico'
       }
     },
     {

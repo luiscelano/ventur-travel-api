@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class TipoUsuario extends Model {
     /**
@@ -11,24 +9,34 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      TipoUsuario.hasMany(models.Usuario, { foreignKey: { name: 'tipousuario_id', allowNull: false } });
+      TipoUsuario.hasMany(models.Usuario, { foreignKey: { name: 'id_tipo_usuario', allowNull: false } })
+      TipoUsuario.hasMany(models.Autorizacion, { foreignKey: 'id_tipo_usuario', allowNull: false })
     }
   }
-  TipoUsuario.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+  TipoUsuario.init(
+    {
+      idTipoUsuario: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        key: 'id_tipo_usuario'
+      },
+      authorizationCode: {
+        type: DataTypes.STRING(100),
+        allowNull: false
+      },
+      correo: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
     },
-    descripcion: {
-      type: DataTypes.STRING(100)
+    {
+      sequelize,
+      modelName: 'TipoUsuario',
+      freezeTableName: true,
+      underscored: true,
+      tableName: 'tipo_usuario'
     }
-  }, {
-    sequelize,
-    modelName: 'TipoUsuario',
-    freezeTableName: true,
-    underscored: true,
-    tableName: 'tipo_usuario'
-  });
-  return TipoUsuario;
-};
+  )
+  return TipoUsuario
+}

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class StatusPaquete extends Model {
     /**
@@ -11,25 +9,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      StatusPaquete.hasMany(models.Paquete, { foreignKey: { name: 'statuspaquete_id', allowNull: false } });
+      StatusPaquete.hasMany(models.Paquete, { foreignKey: { name: 'id_status_paquete', allowNull: false } })
     }
   }
-  StatusPaquete.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+  StatusPaquete.init(
+    {
+      idStatusPaquete: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        key: 'id_status_paquete'
+      },
+      descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
     },
-    descripcion: {
-      type: DataTypes.STRING,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'StatusPaquete',
+      freezeTableName: true,
+      underscored: true,
+      tableName: 'status_paquete'
     }
-  }, {
-    sequelize,
-    modelName: 'StatusPaquete',
-    freezeTableName: true,
-    underscored: true,
-    tableName: 'status_paquete'
-  });
-  return StatusPaquete;
-};
+  )
+  return StatusPaquete
+}
