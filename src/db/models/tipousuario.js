@@ -21,11 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         key: 'id_tipo_usuario'
       },
-      authorizationCode: {
-        type: DataTypes.STRING(100),
-        allowNull: false
-      },
-      correo: {
+      descripcion: {
         type: DataTypes.STRING,
         allowNull: false
       }

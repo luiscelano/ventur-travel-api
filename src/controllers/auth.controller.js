@@ -3,32 +3,61 @@ import bcrypt from 'bcrypt'
 import { users } from './users.controller'
 import generateAccessToken from 'utils/generateAccessToken'
 import generateRefreshToken from 'utils/generateRefreshToken'
+import { Usuario, TipoUsuario } from 'db/models'
 
 export const refreshTokens = [] // will be stored in Redis DB
 
-export const getUsers = (__, res) => res.json({ users })
-
 export const userLogin = async (req, res) => {
-  const user = users.find((user) => user.username === req.body.username)
+  const response = await Usuario.findOne({
+    where: {
+      correo: req.body.correo
+    },
+    include: [
+      {
+        model: TipoUsuario,
+        as: 'permiso'
+      }
+    ]
+  })
 
-  if (!user) return res.status(404).send('Cannot find user')
+  if (!response) return res.status(404).send({ message: 'Correo no encontrado' })
 
+  const user = response.toJSON()
   try {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      const accessToken = generateAccessToken({ username: user.username })
-      const refreshToken = generateRefreshToken({ username: user.username })
+    if (await bcrypt.compare(req.body.contrasenia, user.contrasenia)) {
+      delete user.contrasenia
+
+      const accessToken = generateAccessToken({ user })
+      const refreshToken = generateRefreshToken({ user })
       refreshTokens.push(refreshToken)
       return res.status(200).json({
-        message: 'Signed In!',
         accessToken,
         refreshToken
       })
     } else {
-      return res.status(401).send('Wrong password')
+      return res.status(401).json({ message: 'Contraseña incorrecta!' })
     }
   } catch {
     res.status(401).send()
   }
+}
+
+export const userSignUp = async (req, res) => {
+  const salt = await bcrypt.genSalt()
+  const hashedPassword = await bcrypt.hash(req.body.password, salt)
+  console.log('salt', salt)
+  console.log('hashedPassword', hashedPassword)
+  const user = { username: req.body.username, password: hashedPassword }
+  users.push(user)
+
+  const accessToken = generateAccessToken({ username: user.username })
+  const refreshToken = generateRefreshToken({ username: user.username })
+  refreshTokens.push(refreshToken)
+  return res.status(200).json({
+    message: 'User created!',
+    accessToken,
+    refreshToken
+  })
 }
 
 export const userLogout = (req, res) => {

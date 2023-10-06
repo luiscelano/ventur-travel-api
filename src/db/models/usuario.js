@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Usuario.belongsTo(models.StatusVendedor, { foreignKey: { name: 'id_status_vendedor', allowNull: false } })
-      Usuario.belongsTo(models.TipoUsuario, { foreignKey: { name: 'id_tipo_usuario', allowNull: false } })
+      Usuario.belongsTo(models.TipoUsuario, {
+        foreignKey: { name: 'id_tipo_usuario', allowNull: false },
+        as: 'permiso'
+      })
       Usuario.hasMany(models.Cartera, { foreignKey: { name: 'id_usuario', allowNull: false } })
       Usuario.hasMany(models.MetaDetalle, { foreignKey: { name: 'id_usuario', allowNull: false } })
     }

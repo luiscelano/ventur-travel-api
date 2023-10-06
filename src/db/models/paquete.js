@@ -10,8 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Paquete.hasMany(models.Cartera, { foreignKey: { name: 'id_paquete', allowNull: false } })
-      Paquete.belongsTo(models.StatusPaquete, { foreignKey: { name: 'id_status_paquete', allowNull: false } })
-      Paquete.belongsTo(models.Contacto, { foreignKey: { name: 'id_contacto', allowNull: false } })
+      Paquete.belongsTo(models.StatusPaquete, {
+        foreignKey: { name: 'id_status_paquete', allowNull: false },
+        as: 'status'
+      })
+      Paquete.belongsTo(models.Contacto, { foreignKey: { name: 'id_contacto', allowNull: false }, as: 'contacto' })
     }
   }
   Paquete.init(

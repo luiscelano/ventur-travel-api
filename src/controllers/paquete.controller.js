@@ -1,8 +1,19 @@
-import { Paquete } from 'db/models'
+import { Paquete, Contacto, StatusPaquete } from 'db/models'
 
 export const getPaquetes = async (__, res) => {
   try {
-    const paquetes = await Paquete.findAll()
+    const paquetes = await Paquete.findAll({
+      include: [
+        {
+          model: Contacto,
+          as: 'contacto'
+        },
+        {
+          model: StatusPaquete,
+          as: 'status'
+        }
+      ]
+    })
 
     return res.status(200).json({ paquetes })
   } catch (error) {

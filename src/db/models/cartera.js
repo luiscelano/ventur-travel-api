@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cartera.belongsTo(models.Cliente, { foreignKey: { name: 'id_cliente', allowNull: false } })
-      Cartera.belongsTo(models.Usuario, { foreignKey: { name: 'id_usuario', allowNull: false } })
-      Cartera.belongsTo(models.Paquete, { foreignKey: { name: 'id_paquete', allowNull: false } })
-      Cartera.belongsTo(models.Pais, { foreignKey: { name: 'id_pais', allowNull: false } })
+      Cartera.belongsTo(models.Cliente, { foreignKey: { name: 'id_cliente', allowNull: false }, as: 'cliente' })
+      Cartera.belongsTo(models.Usuario, { foreignKey: { name: 'id_usuario', allowNull: false }, as: 'vendedor' })
+      Cartera.belongsTo(models.Paquete, { foreignKey: { name: 'id_paquete', allowNull: false }, as: 'paquete' })
+      Cartera.belongsTo(models.Pais, { foreignKey: { name: 'id_pais', allowNull: false }, as: 'pais' })
     }
   }
   Cartera.init(

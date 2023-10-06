@@ -6,12 +6,12 @@ module.exports = {
     return Promise.all([
       await queryInterface.bulkInsert('status_paquete', [
         {
-          descripcion: 'disponible',
+          descripcion: 'activo',
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          descripcion: 'agotado',
+          descripcion: 'inactivo',
           created_at: new Date(),
           updated_at: new Date()
         }
