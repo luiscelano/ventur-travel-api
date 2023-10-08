@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       MetaDetalle.belongsTo(models.MetaGeneral, { foreignKey: { name: 'id_meta_general', allowNull: false } })
-      MetaDetalle.belongsTo(models.Usuario, { foreignKey: { name: 'id_usuario', allowNull: false } })
+      MetaDetalle.belongsTo(models.Usuario, { foreignKey: { name: 'id_usuario', allowNull: false }, as: 'usuario' })
     }
   }
   MetaDetalle.init(
@@ -25,11 +25,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
         field: 'meta_alcanzar'
-      },
-      metaAcumulada: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-        field: 'meta_acumulada'
       }
     },
     {

@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      MetaGeneral.hasMany(models.MetaDetalle, { foreignKey: { name: 'id_meta_general', allowNull: false } })
+      MetaGeneral.hasMany(models.MetaDetalle, {
+        foreignKey: { name: 'id_meta_general', allowNull: false },
+        as: 'detalle'
+      })
     }
   }
   MetaGeneral.init(
@@ -32,11 +35,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
         field: 'meta_alcanzar'
-      },
-      metaAcumulada: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-        field: 'meta_acumulada'
       }
     },
     {

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: { name: 'id_tipo_usuario', allowNull: false },
         as: 'permiso'
       })
-      Usuario.hasMany(models.Cartera, { foreignKey: { name: 'id_usuario', allowNull: false } })
+      Usuario.hasMany(models.Cartera, { foreignKey: { name: 'id_usuario', allowNull: false }, as: 'ventas' })
       Usuario.hasMany(models.MetaDetalle, { foreignKey: { name: 'id_usuario', allowNull: false } })
     }
   }

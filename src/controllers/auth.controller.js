@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { users } from './users.controller'
 import generateAccessToken from 'utils/generateAccessToken'
 import generateRefreshToken from 'utils/generateRefreshToken'
 import { Usuario, TipoUsuario } from 'db/models'
@@ -48,7 +47,6 @@ export const userSignUp = async (req, res) => {
   console.log('salt', salt)
   console.log('hashedPassword', hashedPassword)
   const user = { username: req.body.username, password: hashedPassword }
-  users.push(user)
 
   const accessToken = generateAccessToken({ username: user.username })
   const refreshToken = generateRefreshToken({ username: user.username })
