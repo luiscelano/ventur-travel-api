@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "67d8b6fb-8355-4ede-a705-d052522fbeb4",
+		"name": "ventur-travel-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19825515"
+	},
+	"item": [
+		{
+			"name": "Meta",
+			"item": [
+				{
+					"name": "getMetas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjczNzQ1MCwiZXhwIjoxNjk2NzM5ODUwfQ.xORU8gfjJhqAU4q251sL9Rqh-syNju7CVIkSPnosoOs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/metas?anio=2023&mes=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"metas"
+							],
+							"query": [
+								{
+									"key": "anio",
+									"value": "2023"
+								},
+								{
+									"key": "mes",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMeta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjcyOTI2NiwiZXhwIjoxNjk2NzMxNjY2fQ.beEeYHEQ6mREiJ70XHCv2NQT8qCeMxM3_zYpvhJWURA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mes\": 12,\n    \"anio\": 2023,\n    \"metaAlcanzar\": 80000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/metas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"metas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "asignarMeta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjcyOTI2NiwiZXhwIjoxNjk2NzMxNjY2fQ.beEeYHEQ6mREiJ70XHCv2NQT8qCeMxM3_zYpvhJWURA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuarios/1/asignarMeta/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"1",
+								"asignarMeta",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    // \"correo\": \"luiscelano46@gmail.com\",\n    \"correo\": \"luiscelano123@live.com\",\n    \"contrasenia\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cartera",
+			"item": [
+				{
+					"name": "createCartera",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjczNzQ1MCwiZXhwIjoxNjk2NzM5ODUwfQ.xORU8gfjJhqAU4q251sL9Rqh-syNju7CVIkSPnosoOs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_cliente\": 2,\n    \"cantidadTuristas\": 5,\n    \"cantidadPaquetes\": 3,\n    \"id_paquete\": 1,\n    \"id_pais\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/carteras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"carteras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCarteras",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjczNzQ1MCwiZXhwIjoxNjk2NzM5ODUwfQ.xORU8gfjJhqAU4q251sL9Rqh-syNju7CVIkSPnosoOs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/carteras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"carteras"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
