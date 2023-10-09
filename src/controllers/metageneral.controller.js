@@ -17,17 +17,15 @@ export const getMeta = async (req, res) => {
     const metaResponse = await MetaGeneral.findAll(metaQuery)
     if (!metaResponse || !metaResponse.length)
       return res.status(404).json({
-        message: 'No hay una meta creada para esta fecha'
+        message: req.user.isAdmin ? 'No hay una meta creada para esta fecha' : 'No tienes meta asignada para esta fecha'
       })
+
     const meta = metaResponse[0]?.toJSON() || {}
 
     if (req.user.isAdmin) {
       const metaDetalleQuery = buildMetaDetalleQuery(queryParams)
       if (req.query) Object.assign(metaDetalleQuery, { where: queryParams })
       const metaDetalleResponse = await MetaGeneral.findAll(metaDetalleQuery)
-      for (let metaDetalleItem of metaDetalleResponse) {
-        console.log(metaDetalleItem.toJSON())
-      }
       const detalle = metaDetalleResponse[0].toJSON()
       Object.assign(meta, { ...detalle })
     }

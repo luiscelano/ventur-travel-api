@@ -55,7 +55,7 @@ export const asignarMeta = async (req, res) => {
     })
     if (metaDetalle)
       return res.status(400).json({
-        message: 'El usuario ya tiene una meta asignada'
+        message: 'El usuario ya tiene esta meta asignada'
       })
 
     const metaGeneral = await MetaGeneral.findByPk(req.params.idMeta)
