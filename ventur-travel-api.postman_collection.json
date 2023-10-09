@@ -7,65 +7,35 @@
 	},
 	"item": [
 		{
-			"name": "Meta",
+			"name": "Contacto",
 			"item": [
 				{
-					"name": "getMetas",
+					"name": "getContactos",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjczNzQ1MCwiZXhwIjoxNjk2NzM5ODUwfQ.xORU8gfjJhqAU4q251sL9Rqh-syNju7CVIkSPnosoOs",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/metas?anio=2023&mes=12",
+							"raw": "http://localhost:3000/contactos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"metas"
-							],
-							"query": [
-								{
-									"key": "anio",
-									"value": "2023"
-								},
-								{
-									"key": "mes",
-									"value": "12"
-								}
+								"contactos"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "createMeta",
+					"name": "createContacto",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjcyOTI2NiwiZXhwIjoxNjk2NzMxNjY2fQ.beEeYHEQ6mREiJ70XHCv2NQT8qCeMxM3_zYpvhJWURA",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mes\": 12,\n    \"anio\": 2023,\n    \"metaAlcanzar\": 80000\n}",
+							"raw": "{\n    \"nombre\": \"viajes roatan\",\n    \"telefono\": 43439898\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,14 +43,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/metas",
+							"raw": "http://localhost:3000/contactos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"metas"
+								"contactos"
 							]
 						}
 					},
@@ -89,35 +59,174 @@
 			]
 		},
 		{
-			"name": "Usuario",
+			"name": "Paquete",
 			"item": [
 				{
-					"name": "asignarMeta",
+					"name": "getPaquetes",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjcyOTI2NiwiZXhwIjoxNjk2NzMxNjY2fQ.beEeYHEQ6mREiJ70XHCv2NQT8qCeMxM3_zYpvhJWURA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/usuarios/1/asignarMeta/3",
+							"raw": "http://localhost:3000/paquetes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"usuarios",
-								"1",
-								"asignarMeta",
-								"3"
+								"paquetes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPaquete",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Viaje a Roatan\",\n    \"descripcion\": \"Viaje a Roatan todo incluido 2 noches\",\n    \"precio\": 7000,\n    \"cantidadNoches\": 2,\n    \"fechaInicio\": \"2023-10-19\",\n    \"fechaFin\": \"2023-10-21\",\n    \"cantidadChd\": 3,\n    \"cantidadAdl\": 2,\n    \"id_status_paquete\": 1,\n    \"id_contacto\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/paquetes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"paquetes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "getClientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dpi\":\"123456778\",\n    \"nombre\": \"John Doe\",\n    \"telefono\": 12345678,\n    \"direccion\": \"av simeon canias zona 2\",\n    \"correo\": \"john@example.com\",\n    \"id_tipo_cliente\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cartera",
+			"item": [
+				{
+					"name": "createCartera",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MSwiY29ycmVvIjoidmVuZGVkb3JAbWFpbC5jb20iLCJub21icmUiOiJKb2huIiwiYXBlbGxpZG8iOiJEb2UiLCJkcGkiOiIxMjM0NTY2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA5VDA1OjI3OjM5LjYzN1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA5VDA1OjI3OjM5LjYzN1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MSwicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjoxLCJkZXNjcmlwY2lvbiI6InZlbmRlZG9yIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIn19LCJpYXQiOjE2OTY4MzA4NjMsImV4cCI6MTY5NjgzMzI2M30.ih9-4SSSkF3Xs6_FwxLJR6j7n253bUudKLjBhFwnnRY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_cliente\": 1,\n    \"cantidadTuristas\": 5,\n    \"cantidadPaquetes\": 1,\n    \"id_paquete\": 1,\n    \"id_pais\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/carteras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"carteras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCarteras",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MSwiY29ycmVvIjoidmVuZGVkb3JAbWFpbC5jb20iLCJub21icmUiOiJKb2huIiwiYXBlbGxpZG8iOiJEb2UiLCJkcGkiOiIxMjM0NTY2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA5VDA1OjI3OjM5LjYzN1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA5VDA1OjI3OjM5LjYzN1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MSwicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjoxLCJkZXNjcmlwY2lvbiI6InZlbmRlZG9yIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIn19LCJpYXQiOjE2OTY4MzA4NjMsImV4cCI6MTY5NjgzMzI2M30.ih9-4SSSkF3Xs6_FwxLJR6j7n253bUudKLjBhFwnnRY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/carteras",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"carteras"
 							]
 						}
 					},
@@ -160,17 +269,56 @@
 			]
 		},
 		{
-			"name": "Cartera",
+			"name": "Meta",
 			"item": [
 				{
-					"name": "createCartera",
+					"name": "getMetas",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjczNzQ1MCwiZXhwIjoxNjk2NzM5ODUwfQ.xORU8gfjJhqAU4q251sL9Rqh-syNju7CVIkSPnosoOs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoiYWRtaW5AbWFpbC5jb20iLCJub21icmUiOiJKYW5lIiwiYXBlbGxpZG8iOiJEb2UiLCJkcGkiOiIxMjM0NTYzNjc3IiwiZmVjaGFOYWNpbWllbnRvIjoiMjAwMC0wOC0yM1QwMDowMDowMC4wMDBaIiwiZmVjaGFJbmdyZXNvIjoiMjAyMy0xMC0wMVQwMDowMDowMC4wMDBaIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS42MzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS42MzdaIiwiaWRfc3RhdHVzX3ZlbmRlZG9yIjoyLCJpZF90aXBvX3VzdWFyaW8iOjMsInBlcm1pc28iOnsiaWRUaXBvVXN1YXJpbyI6MywiZGVzY3JpcGNpb24iOiJhZG1pbmlzdHJhZG9yIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIn19LCJpYXQiOjE2OTY4MzE0MTYsImV4cCI6MTY5NjgzMzgxNn0.P43ddE-0gXS7GUB3SjWT3gZwtdRVnzTanA5rpOvaXB4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/metas?anio=2023&mes=11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"metas"
+							],
+							"query": [
+								{
+									"key": "anio",
+									"value": "2023"
+								},
+								{
+									"key": "mes",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMeta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoiYWRtaW5AbWFpbC5jb20iLCJub21icmUiOiJKYW5lIiwiYXBlbGxpZG8iOiJEb2UiLCJkcGkiOiIxMjM0NTYzNjc3IiwiZmVjaGFOYWNpbWllbnRvIjoiMjAwMC0wOC0yM1QwMDowMDowMC4wMDBaIiwiZmVjaGFJbmdyZXNvIjoiMjAyMy0xMC0wMVQwMDowMDowMC4wMDBaIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS42MzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS42MzdaIiwiaWRfc3RhdHVzX3ZlbmRlZG9yIjoyLCJpZF90aXBvX3VzdWFyaW8iOjMsInBlcm1pc28iOnsiaWRUaXBvVXN1YXJpbyI6MywiZGVzY3JpcGNpb24iOiJhZG1pbmlzdHJhZG9yIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIn19LCJpYXQiOjE2OTY4MzA2NTUsImV4cCI6MTY5NjgzMzA1NX0.kZHWgll-WXfvtWuiHnpt9i77J1O3sdDlU2IG6waQkbk",
 									"type": "string"
 								}
 							]
@@ -179,7 +327,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id_cliente\": 2,\n    \"cantidadTuristas\": 5,\n    \"cantidadPaquetes\": 3,\n    \"id_paquete\": 1,\n    \"id_pais\": 1\n}",
+							"raw": "{\n    \"mes\": 11,\n    \"anio\": 2023,\n    \"metaAlcanzar\": 80000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -187,43 +335,51 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/carteras",
+							"raw": "http://localhost:3000/metas",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"carteras"
+								"metas"
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
 				{
-					"name": "getCarteras",
+					"name": "asignarMeta",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoibHVpc2NlbGFubzEyM0BsaXZlLmNvbSIsIm5vbWJyZSI6Ikx1aXMiLCJhcGVsbGlkbyI6IkNlbGFubyIsImRwaSI6IjEyMzQ1NjM2NzciLCJmZWNoYU5hY2ltaWVudG8iOiIyMDAwLTA4LTIzVDAwOjAwOjAwLjAwMFoiLCJmZWNoYUluZ3Jlc28iOiIyMDIzLTEwLTAxVDAwOjAwOjAwLjAwMFoiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA1OjEyOjA4Ljk0M1oiLCJpZF9zdGF0dXNfdmVuZGVkb3IiOjIsImlkX3RpcG9fdXN1YXJpbyI6MywicGVybWlzbyI6eyJpZFRpcG9Vc3VhcmlvIjozLCJkZXNjcmlwY2lvbiI6ImFkbWluaXN0cmFkb3IiLCJjcmVhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEwLTA2VDA0OjIyOjA2LjcwOVoifX0sImlhdCI6MTY5NjczNzQ1MCwiZXhwIjoxNjk2NzM5ODUwfQ.xORU8gfjJhqAU4q251sL9Rqh-syNju7CVIkSPnosoOs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkVXN1YXJpbyI6MiwiY29ycmVvIjoiYWRtaW5AbWFpbC5jb20iLCJub21icmUiOiJKYW5lIiwiYXBlbGxpZG8iOiJEb2UiLCJkcGkiOiIxMjM0NTYzNjc3IiwiZmVjaGFOYWNpbWllbnRvIjoiMjAwMC0wOC0yM1QwMDowMDowMC4wMDBaIiwiZmVjaGFJbmdyZXNvIjoiMjAyMy0xMC0wMVQwMDowMDowMC4wMDBaIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS42MzdaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS42MzdaIiwiaWRfc3RhdHVzX3ZlbmRlZG9yIjoyLCJpZF90aXBvX3VzdWFyaW8iOjMsInBlcm1pc28iOnsiaWRUaXBvVXN1YXJpbyI6MywiZGVzY3JpcGNpb24iOiJhZG1pbmlzdHJhZG9yIiwiY3JlYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMC0wOVQwNToyNzozOS41NTBaIn19LCJpYXQiOjE2OTY4MzA2NTUsImV4cCI6MTY5NjgzMzA1NX0.kZHWgll-WXfvtWuiHnpt9i77J1O3sdDlU2IG6waQkbk",
 									"type": "string"
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/carteras",
+							"raw": "http://localhost:3000/usuarios/2/asignarMeta/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"carteras"
+								"usuarios",
+								"2",
+								"asignarMeta",
+								"2"
 							]
 						}
 					},
