@@ -135,7 +135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    // \"correo\": \"luiscelano46@gmail.com\",\n    \"correo\": \"luiscelano123@live.com\",\n    \"contrasenia\": \"password\"\n}",
+							"raw": "{\n    // \"correo\": \"vendedor@mail.com\",\n    \"correo\": \"admin@mail.com\",\n    \"contrasenia\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
