@@ -13,10 +13,6 @@ export const getCarteras = async (req, res) => {
           as: 'vendedor'
         },
         {
-          model: Paquete,
-          as: 'paquete'
-        },
-        {
           model: Pais,
           as: 'pais'
         }

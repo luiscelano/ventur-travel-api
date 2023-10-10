@@ -8,8 +8,10 @@ dotenv.config({ path: __dirname.replace('src', `.env.${process.env.NODE_ENV || '
 import posts from '__fixtures__/posts.json'
 import routes from 'routes'
 import db from 'db/models'
+import initSchema from 'schemas'
 ;(async () => {
   const app = express()
+  initSchema()
 
   const HOST = 'localhost'
   const PORT = process.env.PORT || 3000

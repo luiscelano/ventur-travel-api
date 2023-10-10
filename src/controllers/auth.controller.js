@@ -3,10 +3,19 @@ import bcrypt from 'bcrypt'
 import generateAccessToken from 'utils/generateAccessToken'
 import generateRefreshToken from 'utils/generateRefreshToken'
 import { Usuario, TipoUsuario } from 'db/models'
+import { LoginInput, Usuario as UsuarioSchema } from 'schemas'
+import { getSchemaErrors } from 'utils/getSchemaErrors'
 
 export const refreshTokens = [] // will be stored in Redis DB
 
 export const userLogin = async (req, res) => {
+  const inputSchema = LoginInput.newContext()
+  const cleanedInput = inputSchema.clean(req.body)
+  inputSchema.validate(cleanedInput)
+  if (!inputSchema.isValid()) {
+    const error = getSchemaErrors(inputSchema)
+    return res.status(422).json({ error })
+  }
   const response = await Usuario.findOne({
     where: {
       correo: req.body.correo
@@ -24,12 +33,12 @@ export const userLogin = async (req, res) => {
   const user = response.toJSON()
   try {
     if (await bcrypt.compare(req.body.contrasenia, user.contrasenia)) {
-      delete user.contrasenia
-
-      const accessToken = generateAccessToken({ user })
-      const refreshToken = generateRefreshToken({ user })
+      const cleanedOutput = UsuarioSchema.clean(user)
+      const accessToken = generateAccessToken({ user: cleanedOutput })
+      const refreshToken = generateRefreshToken({ user: cleanedOutput })
       refreshTokens.push(refreshToken)
       return res.status(200).json({
+        user: cleanedOutput,
         accessToken,
         refreshToken
       })
