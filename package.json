@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "start": "NODE_ENV=production babel-node src/index.js",
-    "start:dev_windows": "set NODE_ENV=development && nodemon --exec babel-node src/index.js",
-    "start_windows": "set NODE_ENV=production babel-node src/index.js",
+    "start": "cross-env NODE_ENV=production babel-node src/index.js",
     "db:migrate": "sequelize --config src/config/database.js db:migrate",
     "db:seed": "sequelize --config src/config/database.js db:seed:all"
   },

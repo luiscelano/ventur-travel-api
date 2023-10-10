@@ -1,6 +1,9 @@
 const dotenv = require('dotenv')
+const path = require('path')
+
 dotenv.config({
-  path: __dirname.replace('src/config', '.env.development')
+  path: path.resolve(path.dirname(''), '.env.development')
+  // path: __dirname.replace('src/config', '.env.development')
 })
 
 module.exports = {
