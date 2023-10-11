@@ -1,6 +1,6 @@
 import express from 'express'
 import http from 'http'
-// import { initAPI } from 'api'
+import events from 'events'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -9,10 +9,13 @@ import posts from '__fixtures__/posts.json'
 import routes from 'routes'
 import db from 'db/models'
 import initSchema from 'schemas'
+import initEvents from 'initEvents'
+
+export const appEvents = new events.EventEmitter()
 ;(async () => {
   const app = express()
   initSchema()
-
+  initEvents(appEvents)
   const HOST = 'localhost'
   const PORT = process.env.PORT || 3000
 
@@ -28,6 +31,7 @@ import initSchema from 'schemas'
       message: 'Ok',
       date: new Date()
     }
+    appEvents.emit('test', data)
     res.status(200).send(data)
   })
 

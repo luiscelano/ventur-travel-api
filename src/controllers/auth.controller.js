@@ -2,9 +2,11 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import generateAccessToken from 'utils/generateAccessToken'
 import generateRefreshToken from 'utils/generateRefreshToken'
-import { Usuario, TipoUsuario } from 'db/models'
-import { LoginInput, Usuario as UsuarioSchema } from 'schemas'
+import { Usuario, TipoUsuario, Autorizacion } from 'db/models'
+import { LoginInput, Usuario as UsuarioSchema, CreateAccessInput } from 'schemas'
 import { getSchemaErrors } from 'utils/getSchemaErrors'
+import generateRandomCode from 'utils/generateRandomCode'
+import { appEvents } from 'index'
 
 export const refreshTokens = [] // will be stored in Redis DB
 
@@ -85,4 +87,34 @@ export const getAccessToken = async (req, res) => {
     const accessToken = generateAccessToken({ username: user.username })
     res.json({ accessToken: accessToken })
   })
+}
+
+export const createAccess = async (req, res) => {
+  try {
+    if (!req.user.isAdmin)
+      return res.status(401).json({
+        message: 'No tienes permiso para realizar esta acción'
+      })
+    const inputSchema = CreateAccessInput.newContext()
+    const cleanedInput = CreateAccessInput.clean(req.body)
+    inputSchema.validate(cleanedInput)
+    if (!inputSchema.isValid()) {
+      const errors = getSchemaErrors(inputSchema)
+
+      return res.status(422).json({ errors })
+    }
+    const authorizationCode = generateRandomCode()
+    Object.assign(cleanedInput, { authorizationCode })
+    const access = await Autorizacion.create(cleanedInput)
+    if (!access) return res.status(400).json({ message: 'Error al crear acceso' })
+
+    appEvents.emit('accessCreated', {
+      correo: req.body.correo,
+      authorizationCode
+    })
+    return res.status(200).json({ acceso: access })
+  } catch (error) {
+    console.error('create access error:', error)
+    return res.status(500).json({ error })
+  }
 }

@@ -10,3 +10,14 @@ export const LoginInput = new SimpleSchema({
     required: true
   }
 })
+
+export const CreateAccessInput = new SimpleSchema({
+  correo: {
+    type: String,
+    required: true
+  },
+  id_tipo_usuario: {
+    type: Number,
+    required: true
+  }
+})

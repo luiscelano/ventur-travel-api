@@ -22,11 +22,18 @@ module.exports = (sequelize, DataTypes) => {
       },
       authorizationCode: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: false,
+        key: 'authorization_code',
+        unique: true
       },
       correo: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      aceptado: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false
       }
     },
     {
