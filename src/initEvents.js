@@ -6,7 +6,9 @@ const initEvents = (appEvents) => {
     console.log('test event emmited', payload)
   })
 
-  appEvents.on('accessCreated', async ({ correo, authorizationCode }) => {
+  appEvents.on('accessCreated', async ({ user, payload }) => {
+    console.log('access created by:', user)
+    const { correo, authorizationCode } = payload
     try {
       const htmlTemplate = await newUserTemplate(authorizationCode)
       await sendEmail({
@@ -18,6 +20,14 @@ const initEvents = (appEvents) => {
     } catch (error) {
       console.error('error sending email', error)
     }
+  })
+  appEvents.on('userCreated', async ({ user, payload }) => {
+    console.log('user created:', user)
+    const { autorizacion } = payload
+    await autorizacion.update({
+      aceptado: true
+    })
+    console.log('authorization updated!')
   })
 }
 

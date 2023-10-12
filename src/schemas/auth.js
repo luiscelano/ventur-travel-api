@@ -21,3 +21,38 @@ export const CreateAccessInput = new SimpleSchema({
     required: true
   }
 })
+
+export const UserSignUpInput = new SimpleSchema({
+  correo: {
+    type: String,
+    required: true
+  },
+  contrasenia: {
+    type: String,
+    required: true
+  },
+  nombre: {
+    type: String,
+    required: true
+  },
+  apellido: {
+    type: String,
+    required: true
+  },
+  dpi: {
+    type: String,
+    required: true
+  },
+  fechaNacimiento: {
+    type: Date,
+    required: true
+  },
+  fechaIngreso: {
+    type: Date,
+    required: true
+  },
+  id_status_vendedor: {
+    type: Number,
+    required: true
+  }
+})

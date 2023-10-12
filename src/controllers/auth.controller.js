@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import generateAccessToken from 'utils/generateAccessToken'
 import generateRefreshToken from 'utils/generateRefreshToken'
 import { Usuario, TipoUsuario, Autorizacion } from 'db/models'
-import { LoginInput, Usuario as UsuarioSchema, CreateAccessInput } from 'schemas'
+import { LoginInput, Usuario as UsuarioSchema, CreateAccessInput, UserSignUpInput } from 'schemas'
 import { getSchemaErrors } from 'utils/getSchemaErrors'
 import generateRandomCode from 'utils/generateRandomCode'
 import { appEvents } from 'index'
@@ -53,20 +53,49 @@ export const userLogin = async (req, res) => {
 }
 
 export const userSignUp = async (req, res) => {
-  const salt = await bcrypt.genSalt()
-  const hashedPassword = await bcrypt.hash(req.body.password, salt)
-  console.log('salt', salt)
-  console.log('hashedPassword', hashedPassword)
-  const user = { username: req.body.username, password: hashedPassword }
+  try {
+    const inputSchema = UserSignUpInput.newContext()
+    const cleanedInput = inputSchema.clean(req.body)
+    inputSchema.validate(cleanedInput)
+    if (!inputSchema.isValid()) {
+      const errors = getSchemaErrors(inputSchema)
 
-  const accessToken = generateAccessToken({ username: user.username })
-  const refreshToken = generateRefreshToken({ username: user.username })
-  refreshTokens.push(refreshToken)
-  return res.status(200).json({
-    message: 'User created!',
-    accessToken,
-    refreshToken
-  })
+      return res.status(422).json({ errors })
+    }
+    const authorizationResponse = await Autorizacion.findOne({
+      where: { authorization_code: req.body.authorizationCode, correo: req.body.correo, aceptado: false }
+    })
+    if (!authorizationResponse)
+      return res.status(404).json({
+        message: 'Código de autorización inválido o ya ha sido utilizado'
+      })
+    const autorizacion = authorizationResponse.toJSON()
+    const salt = await bcrypt.genSalt()
+    const hashedPassword = await bcrypt.hash(req.body.contrasenia, salt)
+    console.log('salt', salt)
+    console.log('hashedPassword', hashedPassword)
+
+    Object.assign(cleanedInput, { contrasenia: hashedPassword, id_tipo_usuario: autorizacion.id_tipo_usuario })
+
+    const userResponse = await Usuario.create(cleanedInput)
+    if (!userResponse) return res.status(400).json({ message: 'Error al crear usuario' })
+    const user = userResponse.toJSON()
+    const cleanedOutput = UsuarioSchema.clean(user)
+
+    const accessToken = generateAccessToken({ user: cleanedOutput })
+    const refreshToken = generateRefreshToken({ user: cleanedOutput })
+    refreshTokens.push(refreshToken)
+    appEvents.emit('userCreated', { user: cleanedOutput, payload: { autorizacion: authorizationResponse } })
+
+    return res.status(200).json({
+      usuario: cleanedOutput,
+      accessToken,
+      refreshToken
+    })
+  } catch (error) {
+    console.error('User signup error:', error)
+    return res.status(500).json({ error })
+  }
 }
 
 export const userLogout = (req, res) => {
@@ -109,8 +138,8 @@ export const createAccess = async (req, res) => {
     if (!access) return res.status(400).json({ message: 'Error al crear acceso' })
 
     appEvents.emit('accessCreated', {
-      correo: req.body.correo,
-      authorizationCode
+      user: req.user,
+      payload: { correo: req.body.correo, authorizationCode }
     })
     return res.status(200).json({ acceso: access })
   } catch (error) {
