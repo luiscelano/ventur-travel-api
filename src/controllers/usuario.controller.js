@@ -1,4 +1,4 @@
-import { Usuario, MetaDetalle, MetaGeneral } from 'db/models'
+import { Usuario, MetaDetalle, MetaGeneral, TipoUsuario } from 'db/models'
 import parseQuery from 'utils/parseQuery'
 
 export const getUsuarios = async (__, res) => {
@@ -80,6 +80,18 @@ export const asignarMeta = async (req, res) => {
     console.error(error)
     return res.status(500).json({
       message: error
+    })
+  }
+}
+
+export const getPermisos = async (req, res) => {
+  try {
+    const permisos = await TipoUsuario.findAll()
+
+    return res.status(200).json({ permisos })
+  } catch (error) {
+    return res.status(500).json({
+      message: error.toString()
     })
   }
 }

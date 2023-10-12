@@ -42,7 +42,7 @@ export const getMeta = async (req, res) => {
 export const createMeta = async (req, res) => {
   try {
     if (!req.user.isAdmin)
-      return res.status(401).json({
+      return res.status(405).json({
         message: 'No tienes permiso de realizar esta acción'
       })
     const body = {

@@ -8,5 +8,6 @@ Router.use(validateAccessToken)
 Router.get('/', UsuarioControllers.getUsuarios)
 Router.patch('/', UsuarioControllers.updateUsuario)
 Router.post('/:idUsuario/asignarMeta/:idMeta', UsuarioControllers.asignarMeta)
+Router.get('/permisos', UsuarioControllers.getPermisos)
 
 export default Router

@@ -9,15 +9,17 @@ const validateAccessToken = async (req, res, next) => {
     })
   token = token.replace('Bearer ', '')
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
-    console.log(err)
+    console.error(err)
+    console.log('payload', payload)
     if (err)
       return res.status(401).json({
         message: 'No estás autorizado para realizar esta petición'
       })
-    req.user = payload.user
+    req.user = payload.user || {}
     const isAdmin =
-      payload.user.permiso.descripcion === userTypes.administrador ||
-      payload.user.permiso.descripcion === userTypes.jefe
+      payload.user &&
+      (payload.user.permiso.descripcion === userTypes.administrador ||
+        payload.user.permiso.descripcion === userTypes.jefe)
     Object.assign(req.user, { isAdmin })
     next()
   })

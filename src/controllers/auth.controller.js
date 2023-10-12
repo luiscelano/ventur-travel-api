@@ -45,10 +45,10 @@ export const userLogin = async (req, res) => {
         refreshToken
       })
     } else {
-      return res.status(401).json({ message: 'Contraseña incorrecta!' })
+      return res.status(405).json({ message: 'Contraseña incorrecta!' })
     }
   } catch {
-    res.status(401).send()
+    res.status(405).send()
   }
 }
 
@@ -111,9 +111,9 @@ export const getAccessToken = async (req, res) => {
   if (refreshToken == null) return res.sendStatus(403)
   if (!refreshTokens.includes(refreshToken)) return res.status(403).send('Forbidden')
 
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, payload) => {
     if (err) return res.sendStatus(403)
-    const accessToken = generateAccessToken({ username: user.username })
+    const accessToken = generateAccessToken({ user: payload.user })
     res.json({ accessToken: accessToken })
   })
 }
@@ -121,7 +121,7 @@ export const getAccessToken = async (req, res) => {
 export const createAccess = async (req, res) => {
   try {
     if (!req.user.isAdmin)
-      return res.status(401).json({
+      return res.status(405).json({
         message: 'No tienes permiso para realizar esta acción'
       })
     const inputSchema = CreateAccessInput.newContext()
@@ -145,5 +145,27 @@ export const createAccess = async (req, res) => {
   } catch (error) {
     console.error('create access error:', error)
     return res.status(500).json({ error })
+  }
+}
+
+export const getAccessList = async (req, res) => {
+  try {
+    if (!req.user.isAdmin)
+      return res.status(405).json({
+        message: 'No tienes permiso para realizar esta acción'
+      })
+    const accesos = await Autorizacion.findAll({
+      include: {
+        model: TipoUsuario,
+        as: 'permiso'
+      }
+    })
+
+    return res.status(200).json({ accesos })
+  } catch (error) {
+    console.error('getAccessList error:', error)
+    return res.status(500).json({
+      message: error.toString()
+    })
   }
 }
