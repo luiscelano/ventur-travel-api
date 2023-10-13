@@ -1,7 +1,9 @@
 import { Usuario, MetaDetalle, MetaGeneral, TipoUsuario } from 'db/models'
+import { Usuario as UsuarioSchema } from 'schemas'
+import SimpleSchema from 'simpl-schema'
 import parseQuery from 'utils/parseQuery'
 
-export const getUsuarios = async (__, res) => {
+export const getUsuarios = async (req, res) => {
   try {
     const queryOptions = {}
     if (!req.user.isAdmin)
@@ -9,9 +11,17 @@ export const getUsuarios = async (__, res) => {
         message: 'No tienes permiso de realizar esta acción'
       })
     if (req.query) Object.assign(queryOptions, { where: parseQuery(req.query) })
-    const usuarios = await Usuario.findAll(queryOptions)
-
-    return res.status(200).json({ usuarios })
+    const usuarioResponse = await Usuario.findAll({
+      include: {
+        model: TipoUsuario,
+        as: 'permiso'
+      },
+      ...queryOptions
+    })
+    const cleanedOutput = Array.from(usuarioResponse || []).map((usuario) => {
+      return UsuarioSchema.clean(usuario.toJSON())
+    })
+    return res.status(200).json({ usuarios: cleanedOutput })
   } catch (error) {
     console.error(error)
     return res.status(500).json({

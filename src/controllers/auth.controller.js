@@ -40,7 +40,7 @@ export const userLogin = async (req, res) => {
       const refreshToken = generateRefreshToken({ user: cleanedOutput })
       refreshTokens.push(refreshToken)
       return res.status(200).json({
-        user: cleanedOutput,
+        usuario: cleanedOutput,
         accessToken,
         refreshToken
       })

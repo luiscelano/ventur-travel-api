@@ -10,7 +10,6 @@ const validateAccessToken = async (req, res, next) => {
   token = token.replace('Bearer ', '')
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
     console.error(err)
-    console.log('payload', payload)
     if (err)
       return res.status(401).json({
         message: 'No estás autorizado para realizar esta petición'
