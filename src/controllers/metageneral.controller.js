@@ -29,8 +29,11 @@ export const getMeta = async (req, res) => {
       const metaDetalleQuery = buildMetaDetalleQuery(queryParams)
       if (req.query) Object.assign(metaDetalleQuery, { where: queryParams })
       const metaDetalleResponse = await MetaGeneral.findAll(metaDetalleQuery)
-      const detalle = metaDetalleResponse[0].toJSON()
-      Object.assign(meta, { ...detalle })
+      const detalle = Array.from(metaDetalleResponse[0].toJSON().detalle || []).map((detalle) => {
+        const meta_alcanzar = meta.meta_alcanzar / metaDetalleResponse[0].toJSON().detalle.length || 0
+        return { ...detalle, meta_alcanzar }
+      })
+      Object.assign(meta, { detalle })
     }
 
     return res.status(200).json({ meta })

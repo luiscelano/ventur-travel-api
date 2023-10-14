@@ -1,33 +1,12 @@
-import { Cartera, Cliente, Usuario, Paquete, Pais } from 'db/models'
+import { Cartera, Paquete } from 'db/models'
+import buildCarteraQuery from 'queries/buildCarteraQuery'
 
 export const getCarteras = async (req, res) => {
   try {
-    const queryOptions = {
-      include: [
-        {
-          model: Cliente,
-          as: 'cliente'
-        },
-        {
-          model: Usuario,
-          as: 'vendedor'
-        },
-        {
-          model: Pais,
-          as: 'pais'
-        },
-        {
-          model: Paquete,
-          as: 'paquete'
-        }
-      ]
-    }
-
+    const queryOptions = buildCarteraQuery(req.query, req.user.isAdmin)
     if (!req.user.isAdmin)
-      Object.assign(queryOptions, {
-        where: {
-          id_usuario: req.user.idUsuario
-        }
+      Object.assign(queryOptions.where, {
+        id_usuario: req.user.idUsuario
       })
 
     const carteras = await Cartera.findAll(queryOptions)
