@@ -16,8 +16,11 @@ export const getMeta = async (req, res) => {
     if (!req.user.isAdmin) Object.assign(metaQuery.include, { where: queryByUser })
     const metaResponse = await MetaGeneral.findAll(metaQuery)
     if (!metaResponse || !metaResponse.length)
-      return res.status(404).json({
-        message: req.user.isAdmin ? 'No hay una meta creada para esta fecha' : 'No tienes meta asignada para esta fecha'
+      return res.status(200).json({
+        message: req.user.isAdmin
+          ? 'No hay una meta creada para esta fecha'
+          : 'No tienes meta asignada para esta fecha',
+        meta: null
       })
 
     const meta = metaResponse[0]?.toJSON() || {}
