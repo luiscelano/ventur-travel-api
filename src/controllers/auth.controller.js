@@ -108,11 +108,20 @@ export const userLogout = (req, res) => {
 
 export const getAccessToken = async (req, res) => {
   const refreshToken = req.body.token
-  if (refreshToken == null) return res.sendStatus(403)
-  if (!refreshTokens.includes(refreshToken)) return res.status(403).send('Forbidden')
+  if (refreshToken == null)
+    return res.status(403).json({
+      message: 'Error de solicitud, vuelve a iniciar sesión'
+    })
+  if (!refreshTokens.includes(refreshToken))
+    return res.status(403).json({
+      message: 'Error de solicitud, vuelve a iniciar sesión'
+    })
 
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, payload) => {
-    if (err) return res.sendStatus(403)
+    if (err)
+      return res.status(403).json({
+        message: 'Error de solicitud, vuelve a iniciar sesión'
+      })
     const accessToken = generateAccessToken({ user: payload.user })
     res.json({ accessToken: accessToken })
   })

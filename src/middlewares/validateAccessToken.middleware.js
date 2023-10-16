@@ -5,7 +5,7 @@ const validateAccessToken = async (req, res, next) => {
   let token = req.headers['authorization']
   if (!token)
     return res.status(403).json({
-      message: 'Forbidden'
+      message: 'Error de solicitud, vuelve a iniciar sesión'
     })
   token = token.replace('Bearer ', '')
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
