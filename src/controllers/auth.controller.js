@@ -30,7 +30,7 @@ export const userLogin = async (req, res) => {
     ]
   })
 
-  if (!response) return res.status(404).send({ message: 'Correo no encontrado' })
+  if (!response) return res.status(404).send({ message: 'Correo y/o contraseña incorrecta' })
 
   const user = response.toJSON()
   try {
@@ -45,7 +45,7 @@ export const userLogin = async (req, res) => {
         refreshToken
       })
     } else {
-      return res.status(405).json({ message: 'Contraseña incorrecta!' })
+      return res.status(404).json({ message: 'Correo y/o contraseña incorrecta' })
     }
   } catch {
     res.status(405).send()
@@ -77,9 +77,16 @@ export const userSignUp = async (req, res) => {
 
     Object.assign(cleanedInput, { contrasenia: hashedPassword, id_tipo_usuario: autorizacion.id_tipo_usuario })
 
-    const userResponse = await Usuario.create(cleanedInput)
+    const userResponse = await Usuario.create(cleanedInput, {
+      include: {
+        model: TipoUsuario,
+        as: 'permiso'
+      }
+    })
     if (!userResponse) return res.status(400).json({ message: 'Error al crear usuario' })
+    const permiso = await userResponse.getPermiso()
     const user = userResponse.toJSON()
+    Object.assign(user, { permiso: permiso.toJSON() })
     const cleanedOutput = UsuarioSchema.clean(user)
 
     const accessToken = generateAccessToken({ user: cleanedOutput })
