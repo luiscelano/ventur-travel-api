@@ -35,7 +35,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
         field: 'meta_alcanzar'
-      }
+      },
+      metaIndividual: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        field: 'meta_individual'
+      }      
     },
     {
       sequelize,

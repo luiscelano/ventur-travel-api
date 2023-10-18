@@ -1,4 +1,6 @@
 import { MetaGeneral } from 'db/models'
+import { MetaDetalle } from 'db/models'
+import { Usuario } from 'db/models'
 import buildMetaQuery from 'queries/buildMetaQuery'
 import buildMetaDetalleQuery from 'queries/buildMetaDetalleQuery'
 import parseQuery from 'utils/parseQuery'
@@ -45,26 +47,86 @@ export const getMeta = async (req, res) => {
   }
 }
 
-export const createMeta = async (req, res) => {
+export const getMetas = async (req, res) => {
   try {
-    if (!req.user.isAdmin)
-      return res.status(405).json({
-        message: 'No tienes permiso de realizar esta acción'
-      })
-    const body = {
-      ...req.body
-    }
-    const meta = await MetaGeneral.create(body)
-    if (!meta)
-      return res.status(400).json({
-        message: 'Error al crear la meta'
-      })
+    const metas = await MetaGeneral.findAll()
 
-    return res.status(200).json({ meta })
+    if (!metas || metas.length === 0) {
+      return res.status(404).json({
+        message: 'No se encontraron metas',
+        metas: []
+      })
+    }
+
+    return res.status(200).json({ metas })
   } catch (error) {
     console.error(error)
     return res.status(500).json({
-      message: error
+      message: 'Error al obtener las metas',
+      error: error.message
+    })
+  }
+}
+
+export const createMeta = async (req, res) => {
+  try {
+    if (!req.user.isAdmin) {
+      return res.status(405).json({
+        message: 'No tienes permiso de realizar esta acción'
+      })
+    }
+
+    // Obtener metaAlcanzar y anio del cuerpo de la solicitud
+    const { metaAlcanzar, anio, ...otherData } = req.body
+
+    // Validar que metaAlcanzar sea mayor que 0
+    if (metaAlcanzar <= 0) {
+      return res.status(400).json({
+        message: 'Datos erróneos. "metaAlcanzar" debe ser mayor que 0.'
+      })
+    }
+
+    // Validar que anio esté en el rango deseado
+    if (anio <= 2022 || anio >= 2100) {
+      return res.status(400).json({
+        message: 'Datos erróneos. "anio" debe estar entre 2022 y 2099.'
+      })
+    }
+
+    // Contar vendedores con id_tipo_usuario 3
+    const vendedoresCount = await Usuario.count({
+      where: { id_tipo_usuario: 3 }
+    })
+
+    // Calcular metaIndividual
+    const metaVendedor = metaAlcanzar / vendedoresCount
+
+    // Crear la meta general
+    const metaGeneral = await MetaGeneral.create({
+      metaAlcanzar,
+      metaIndividual: metaVendedor,
+      anio,
+      ...otherData
+    })
+
+    // Crear registros en la tabla meta_detalle para cada vendedor
+    const vendedores = await Usuario.findAll({
+      where: { id_tipo_usuario: 3 }
+    })
+
+    for (const vendedor of vendedores) {
+      await MetaDetalle.create({
+        id_meta_general: metaGeneral.idMetaGeneral,
+        id_usuario: vendedor.idUsuario,
+        metaAlcanzar: metaVendedor
+      })
+    }
+
+    return res.status(200).json({ metaGeneral })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({
+      message: error.message
     })
   }
 }

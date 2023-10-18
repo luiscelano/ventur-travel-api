@@ -105,3 +105,5 @@ export const getPermisos = async (req, res) => {
     })
   }
 }
+
+
