@@ -88,7 +88,7 @@ export const createMeta = async (req, res) => {
 
     // Contar vendedores con id_tipo_usuario 3
     const vendedoresCount = await Usuario.count({
-      where: { id_tipo_usuario: 3 }
+      where: { id_tipo_usuario: 1 }
     })
 
     // Calcular metaIndividual
@@ -104,7 +104,7 @@ export const createMeta = async (req, res) => {
 
     // Crear registros en la tabla meta_detalle para cada vendedor
     const vendedores = await Usuario.findAll({
-      where: { id_tipo_usuario: 3 }
+      where: { id_tipo_usuario: 1 }
     })
 
     for (const vendedor of vendedores) {
