@@ -51,13 +51,6 @@ export const getMetas = async (req, res) => {
   try {
     const metas = await MetaGeneral.findAll()
 
-    if (!metas || metas.length === 0) {
-      return res.status(404).json({
-        message: 'No se encontraron metas',
-        metas: []
-      })
-    }
-
     return res.status(200).json({ metas })
   } catch (error) {
     console.error(error)
