@@ -5,10 +5,14 @@ package-lock.json
 *.gz
 .env.production
 .env.development
+.env.test
 *.rest
 # Coveralls
 .nyc_output
 coverage
+
+#local db
+database.sqlite
 
 # Benchmarking
 benchmarks/graphs

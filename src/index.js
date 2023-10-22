@@ -11,9 +11,10 @@ import db from 'db/models'
 import initSchema from 'schemas'
 import initEvents from 'initEvents'
 
+export const app = express()
+
 export const appEvents = new events.EventEmitter()
 ;(async () => {
-  const app = express()
   initSchema()
   initEvents(appEvents)
   const HOST = 'localhost'

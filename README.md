@@ -44,6 +44,42 @@ correr el proyecto(modo producción):
 npm run start
 ```
 
+## Pruebas unitarias
+
+para correr las pruebas unitarias, asegurate de tener todos los paquetes instalados:
+
+```shell
+npm run start
+```
+
+Crear un archivo en la carpeta raíz llamado `.env.test` con lo siguiente:
+
+```env
+DB_HOST="localhost"
+DB_DIALECT="sqlite"
+DB_STORAGE="./data/database.sqlite"
+```
+
+para ejecutar las pruebas unitarias corre el comando:
+
+```shell
+npm run test
+```
+
+obtendrás un resultado como este:
+
+```logs
+  generateRandomCode()
+    ✔ randomCode should be type of string
+    ✔ randomCode length should be 120
+
+  parseQuery()
+    ✔ should return mes & anio as number
+
+
+  3 passing (3ms)
+```
+
 ## Uso de Git
 
 Para usar git, se debe crear una rama especifica para los cambios, y luego se hace un [Pull Request](https://docs.github.com/articles/about-pull-requests) a la rama `main`
