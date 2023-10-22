@@ -6,7 +6,7 @@ describe('generateRandomCode()', () => {
     const randomCode = generateRandomCode()
     assert.equal(typeof randomCode, 'string')
   })
-  it('randomCode length should be 120', () => {
+  it('randomCode length should be 20', () => {
     const randomCode = generateRandomCode()
     assert.equal(randomCode.length, 20)
   })
