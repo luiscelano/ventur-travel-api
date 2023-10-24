@@ -49,7 +49,7 @@ npm run start
 para correr las pruebas unitarias, asegurate de tener todos los paquetes instalados:
 
 ```shell
-npm run start
+npm install
 ```
 
 Crear un archivo en la carpeta raíz llamado `.env.test` con lo siguiente:
