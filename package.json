@@ -9,6 +9,7 @@
     "start": "cross-env NODE_ENV=production babel-node src/index.js",
     "db:migrate": "sequelize --config src/config/database.js db:migrate",
     "db:seed": "sequelize --config src/config/database.js db:seed:all",
+    "db:seed:prod": "cross-env NODE_ENV=production sequelize --config src/config/database.js db:seed:all",
     "db:seed:test": "cross-env NODE_ENV=test sequelize --config src/config/database.js db:seed:all",
     "pre:test": "cross-env NODE_ENV=test node src/testInit.js && npm run db:seed:test",
     "test": "npm run pre:test && cross-env NODE_ENV=test mocha --exit --require @babel/register 'src/**/*.spec.js'"
