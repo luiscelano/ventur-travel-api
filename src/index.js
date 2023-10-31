@@ -10,6 +10,7 @@ import routes from 'routes'
 import db from 'db/models'
 import initSchema from 'schemas'
 import initEvents from 'initEvents'
+import sls from 'serverless-http'
 
 export const app = express()
 
@@ -47,3 +48,5 @@ export const appEvents = new events.EventEmitter()
     })
   )
 })()
+
+export const handler = sls(app)

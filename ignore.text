@@ -1,6 +1,5 @@
 # npm
 node_modules
-jspm_packages
 package-lock.json
 *.log
 *.gz
@@ -21,7 +20,3 @@ benchmarks/graphs
 # ignore additional files using core.excludesFile
 .DS_Store
 # https://git-scm.com/docs/gitignore
-
-# Serverless directories
-.serverless
-dist
