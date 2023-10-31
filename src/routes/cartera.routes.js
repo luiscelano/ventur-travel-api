@@ -5,6 +5,7 @@ import validateAccessToken from 'middlewares/validateAccessToken.middleware'
 const Router = express.Router()
 Router.use(validateAccessToken)
 Router.get('/', CarteraControllers.getCarteras)
+Router.get('/summary', CarteraControllers.getCarteraSummary)
 Router.post('/', CarteraControllers.createCartera)
 
 export default Router

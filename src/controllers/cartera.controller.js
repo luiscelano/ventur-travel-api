@@ -1,5 +1,6 @@
 import { Cartera, Paquete } from 'db/models'
 import buildCarteraQuery from 'queries/buildCarteraQuery'
+import buildCarteraSummaryQuery from 'queries/buildCarteraSummaryQuery'
 
 export const getCarteras = async (req, res) => {
   try {
@@ -9,12 +10,32 @@ export const getCarteras = async (req, res) => {
         id_usuario: req.user.idUsuario
       })
 
-    const carteras = await Cartera.findAll(queryOptions)
+    const carteraResponse = await Cartera.findAll(queryOptions)
+    const carteras = Array.from(carteraResponse || []).map((cartera) => cartera.toJSON())
+    const total = carteras.reduce((previous, current) => previous + current.totalPagar, 0)
+
+    return res.status(200).json({ total, carteras })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send(error)
+  }
+}
+
+export const getCarteraSummary = async (req, res) => {
+  try {
+    const queryOptions = buildCarteraSummaryQuery(req.query)
+    if (!req.user.isAdmin)
+      Object.assign(queryOptions.where, {
+        id_usuario: req.user.idUsuario
+      })
+
+    const carteraResponse = await Cartera.findAll(queryOptions)
+    const carteras = Array.from(carteraResponse || []).map((cartera) => cartera.toJSON())
 
     return res.status(200).json({ carteras })
   } catch (error) {
     console.error(error)
-    return res.status(500).send(error)
+    return res.status(500).json({ message: error.toString() })
   }
 }
 
