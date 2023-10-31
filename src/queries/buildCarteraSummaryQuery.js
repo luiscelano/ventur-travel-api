@@ -29,6 +29,10 @@ const buildCarteraSummaryQuery = (queryParams) => {
     Object.assign(queryOptions.where, {
       id_cliente: query.idCliente
     })
+  if (query.idVendedor)
+    Object.assign(queryOptions.where, {
+      id_usuario: query.idVendedor
+    })
 
   if (query.group === 'mes') {
     Object.assign(queryOptions, {
