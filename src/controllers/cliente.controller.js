@@ -1,8 +1,9 @@
-import { Cliente, TipoCliente } from 'db/models'
+import db from 'db/models'
 
 export const getClientes = async (__, res) => {
+  // console.log(db)
   try {
-    const clientes = await Cliente.findAll({
+    const clientes = await db.Cliente.findAll({
       include: [
         {
           model: TipoCliente,

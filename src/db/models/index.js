@@ -16,14 +16,16 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
+console.log('db', db)
 
 readdirSync(__dirname)
   .filter((file) => {
     return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js' && file.indexOf('.test.js') === -1
   })
-  .forEach((file) => {
-    const model = require(join(__dirname, file))(sequelize, DataTypes)
-    db[model.name] = model
+  .forEach(async (file) => {
+    const model = await import(join(__dirname, file))(sequelize, DataTypes)
+    console.log('model', model)
+    db[model.name] = model.default
   })
 
 Object.keys(db).forEach((modelName) => {
